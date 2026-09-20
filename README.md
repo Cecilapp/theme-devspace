@@ -24,9 +24,11 @@ theme:
 The theme ships with a pre-built `assets/styles.css`. Rebuild it after changing a template or a style:
 
 ```bash
-npm install
-npm run css:build   # or `npm run css:watch`
+composer install
+composer css:build   # or `composer css:watch`
 ```
+
+The CSS is compiled with [Tailwind Builder](https://github.com/ArnaudLigny/tailwind-builder), a Composer package running the Tailwind standalone binary: no Node.js nor npm required.
 
 Tailwind scans `themes/devspace/layouts/**/*.twig` **and** your site's `layouts/**/*.twig` (see `@source` in `assets/tailwind.css`).
 

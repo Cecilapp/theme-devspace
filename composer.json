@@ -7,11 +7,18 @@
   "require": {
     "cecil/theme-installer": "^1.4|^2.0"
   },
+  "require-dev": {
+    "aligny/tailwind-builder": "^1.2"
+  },
   "extra": {
     "name": "devspace",
     "branch-alias": {
       "dev-master": "1.x-dev"
     }
+  },
+  "scripts": {
+    "css:build": "tailwind-builder assets/tailwind.css --output=assets/styles.css --minify",
+    "css:watch": "tailwind-builder assets/tailwind.css --output=assets/styles.css --watch"
   },
   "minimum-stability": "dev",
   "prefer-stable": true,

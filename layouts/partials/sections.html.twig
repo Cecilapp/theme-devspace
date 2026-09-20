@@ -1,0 +1,12 @@
+{#- Renders the `sections` front matter variable: a group of `cards` or a timeline of `items`. ~#}
+{%- if page.sections|default([])|length > 0 ~%}
+                    <div class="space-y-10 mt-10">
+                      {%- for section in page.sections ~%}
+                        {%- if section.cards is defined ~%}
+                      {{- include('partials/cards.html.twig', {section: section}) ~}}
+                        {%- elseif section.items is defined ~%}
+                      {{- include('partials/timeline.html.twig', {section: section}) ~}}
+                        {%- endif ~%}
+                      {%- endfor ~%}
+                    </div>
+{%- endif ~%}

@@ -1,0 +1,25 @@
+{#- A post in a list. Expects `p` (a page). ~#}
+{%- import 'macros/icons.twig' as icons ~%}
+                      <article class="py-5 border-b border-slate-100 dark:border-slate-800">
+                        <div class="flex items-start">
+                          {%- if p.image|default(false) ~%}
+                          <img class="rounded-sm w-16 h-16 sm:w-[88px] sm:h-[88px] object-cover mr-6" src="{{ url(asset(p.image)|resize(176)) }}" width="88" height="88" alt="{{ p.title|e }}">
+                          {%- endif ~%}
+                          <div>
+                            {%- if p.date|default(false) ~%}
+                            <div class="text-xs text-slate-500 uppercase mb-1"><span class="text-sky-500">—</span> <time datetime="{{ p.date|date('Y-m-d') }}">{{ p.date|format_date('medium') }}</time></div>
+                            {%- endif ~%}
+                            <h3 class="font-aspekta text-lg font-[650] mb-1">
+                              <a class="inline-flex relative hover:text-sky-500 duration-150 ease-out before:scale-x-0 before:origin-center before:absolute before:inset-0 before:bg-sky-200 dark:before:bg-sky-500 before:opacity-30 before:-z-10 before:translate-y-1/4 before:-rotate-2 hover:before:scale-100 before:duration-150 before:ease-in-out" href="{{ url(p) }}">{{ p.title }}</a>
+                            </h3>
+                            <div class="flex">
+                              <div class="grow text-sm text-slate-500 dark:text-slate-400">
+                                {{- p.description|default(p.content|excerpt_html|excerpt(200)|replace({'<br>': ' '})|trim) -}}
+                              </div>
+                              <a class="hidden lg:flex shrink-0 text-sky-500 items-center justify-center w-12 group" href="{{ url(p) }}" tabindex="-1" aria-hidden="true">
+                                {{- icons.ui('arrow-right', 'fill-current group-hover:translate-x-2 duration-150 ease-in-out') -}}
+                              </a>
+                            </div>
+                          </div>
+                        </div>
+                      </article>

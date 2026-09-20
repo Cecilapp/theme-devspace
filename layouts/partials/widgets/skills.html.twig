@@ -1,0 +1,19 @@
+{#- Skills, as labelled progress bars. ~#}
+{%- set widget = page.skills ?? site.devspace.skills ?? {} -%}
+{%- if widget.items|default([])|length > 0 ~%}
+                  <div class="rounded-lg border border-slate-200 dark:border-slate-800 dark:bg-linear-to-t dark:from-slate-800 dark:to-slate-800/30 odd:rotate-1 even:-rotate-1 p-5">
+                    <div class="font-aspekta font-[650] mb-3">{{ widget.title|default('Technical Skills') }}</div>
+                    <ul class="space-y-3">
+                      {%- for item in widget.items ~%}
+                      <li class="flex justify-between items-center">
+                        <div class="grow inline-flex mr-1 truncate">
+                          <span class="text-sky-500 mr-2">—</span> <span class="font-aspekta font-[650] text-sm truncate">{{ item.name }}</span>
+                        </div>
+                        <div class="shrink-0 relative w-20 h-1.5 bg-slate-200 dark:bg-slate-700" role="progressbar" aria-label="{{ item.name|e }}" aria-valuenow="{{ item.level|default(0) }}" aria-valuemin="0" aria-valuemax="100">
+                          <div class="absolute inset-y-0 left-0 bg-sky-500" style="width:{{ item.level|default(0) }}%"></div>
+                        </div>
+                      </li>
+                      {%- endfor ~%}
+                    </ul>
+                  </div>
+{%- endif ~%}

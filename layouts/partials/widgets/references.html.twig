@@ -1,0 +1,30 @@
+{#- References. ~#}
+{%- import 'macros/icons.twig' as icons -%}
+{%- set widget = page.references ?? site.devspace.references ?? {} -%}
+{%- if widget.items|default([])|length > 0 ~%}
+                  <div class="rounded-lg border border-slate-200 dark:border-slate-800 dark:bg-linear-to-t dark:from-slate-800 dark:to-slate-800/30 odd:rotate-1 even:-rotate-1 p-5">
+                    <div class="font-aspekta font-[650] mb-3">{{ widget.title|default('References') }}</div>
+                    <ul class="space-y-3">
+                      {%- for item in widget.items ~%}
+                      <li>
+                        <a class="flex justify-between items-center space-x-2 group" href="{{ url(item.url|default('#')) }}">
+                          <div class="grow flex items-center space-x-3 truncate">
+                            {%- if item.image|default(false) ~%}
+                            <img class="rounded-full" src="{{ url(asset(item.image)|resize(64)) }}" width="32" height="32" alt="{{ item.name|e }}">
+                            {%- endif ~%}
+                            <div class="truncate">
+                              <div class="font-aspekta font-[650] text-sm truncate mb-1">{{ item.name }}</div>
+                              {%- if item.text|default(false) ~%}
+                              <div class="text-xs text-slate-500 dark:text-slate-400">{{ item.text }}</div>
+                              {%- endif ~%}
+                            </div>
+                          </div>
+                          <div class="shrink-0 text-sky-500">
+                            {{- icons.ui('arrow-right', 'fill-current -rotate-45 group-hover:rotate-0 transition-transform ease-out') -}}
+                          </div>
+                        </a>
+                      </li>
+                      {%- endfor ~%}
+                    </ul>
+                  </div>
+{%- endif ~%}

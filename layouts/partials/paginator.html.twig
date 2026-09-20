@@ -1,0 +1,17 @@
+{#- Previous/next links of a paginated list. ~#}
+{%- if page.paginator|default(false) and page.paginator.count > 1 -%}
+{%- set links = page.paginator.links ~%}
+                      <nav class="flex justify-between items-center pt-8" aria-label="{% trans %}Pagination{% endtrans %}">
+                        {%- if links.prev is defined ~%}
+                        <a class="btn-sm text-slate-100 bg-sky-500 hover:bg-sky-600" href="{{ url(links.prev) }}" rel="prev">&larr; {% trans %}Previous{% endtrans %}</a>
+                        {%- else ~%}
+                        <span></span>
+                        {%- endif ~%}
+                        <span class="text-xs text-slate-500 dark:text-slate-400 uppercase">{{ page.paginator.current }} / {{ page.paginator.count }}</span>
+                        {%- if links.next is defined ~%}
+                        <a class="btn-sm text-slate-100 bg-sky-500 hover:bg-sky-600" href="{{ url(links.next) }}" rel="next">{% trans %}Next{% endtrans %} &rarr;</a>
+                        {%- else ~%}
+                        <span></span>
+                        {%- endif ~%}
+                      </nav>
+{%- endif ~%}

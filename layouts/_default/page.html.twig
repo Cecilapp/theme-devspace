@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="{{ site.language }}">
+  <head>
+    {%- block head ~%}
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    {%- block head_metatags ~%}
+    {{- include('partials/metatags.html.twig') ~}}
+    {%- endblock head_metatags ~%}
+    {%- block head_css ~%}
+    {{ html(asset('styles.css')) }}
+    {%- endblock head_css ~%}
+    {#- applies the stored color scheme before paint, to avoid a flash ~#}
+    <script>
+      if (localStorage.getItem('dark-mode') === 'true') {
+        document.querySelector('html').classList.add('dark');
+      } else {
+        document.querySelector('html').classList.remove('dark');
+      }
+    </script>
+    {%- endblock head ~%}
+  </head>
+  <body class="font-inter antialiased bg-white text-slate-800 dark:bg-slate-900 dark:text-slate-200 tracking-tight">
+    <div class="max-w-7xl mx-auto">
+      <div class="min-h-screen flex">
+        {%- block sidenav ~%}
+        {{- include('partials/sidenav.html.twig') ~}}
+        {%- endblock sidenav ~%}
+        <main class="grow overflow-hidden px-6">
+          <div class="w-full h-full max-w-[1072px] mx-auto flex flex-col">
+            {%- block header ~%}
+            {{- include('partials/header.html.twig') ~}}
+            {%- endblock header ~%}
+            {%- block hero ~%}{% endblock hero ~%}
+            <div class="grow md:flex space-y-8 md:space-y-0 md:space-x-8 {% block spacing %}pt-12 md:pt-16{% endblock spacing %} pb-16 md:pb-20">
+              <div class="grow">
+                <div class="max-w-[700px]">
+                  {%- block main ~%}
+                  <section>
+                    {%- block title ~%}
+                    <h1 class="h1 font-aspekta mb-5">{{ page.title }}</h1>
+                    {%- endblock title ~%}
+                    {%- block image ~%}
+                      {%- if page.image ~%}
+                    <img class="w-full mb-8" src="{{ url(asset(page.image)) }}" alt="{{ page.title|e }}">
+                      {%- endif ~%}
+                    {%- endblock image ~%}
+                    {%- block content ~%}
+                    <div class="content">
+                      {{- page.content ~}}
+                    </div>
+                    {%- endblock content ~%}
+                    {%- block after_content ~%}
+                    {{- include('partials/sections.html.twig') ~}}
+                    {%- endblock after_content ~%}
+                  </section>
+                  {%- endblock main ~%}
+                </div>
+              </div>
+              {%- block aside ~%}
+              {{- include('partials/aside.html.twig') ~}}
+              {%- endblock aside ~%}
+            </div>
+            {%- block footer ~%}
+            {{- include('partials/footer.html.twig') ~}}
+            {%- endblock footer ~%}
+          </div>
+        </main>
+      </div>
+    </div>
+    {%- block js ~%}
+    {{ html(asset('js/main.js'), {defer: true}) }}
+    {%- endblock js ~%}
+  </body>
+</html>

@@ -1,0 +1,18 @@
+{#- Resume page (`layout: resume`): timelines defined in the `sections` front matter variable. ~#}
+{%- extends '_default/page.html.twig' -%}
+
+{%- block main ~%}
+                  <section>
+                    <h1 class="h1 font-aspekta mb-12">{{ page.title }}</h1>
+                    <div class="text-slate-500 dark:text-slate-400 space-y-12">
+                      {%- if page.content ~%}
+                      <div class="content">
+                        {{- page.content ~}}
+                      </div>
+                      {%- endif ~%}
+                      {%- for section in page.sections|default([]) ~%}
+                      {{- include('partials/timeline.html.twig', {section: section}) ~}}
+                      {%- endfor ~%}
+                    </div>
+                  </section>
+{%- endblock main ~%}

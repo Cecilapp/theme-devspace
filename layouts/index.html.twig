@@ -1,0 +1,56 @@
+{#- Homepage: hero, latest posts and optional card sections (`sections` front matter variable). ~#}
+{%- extends '_default/page.html.twig' -%}
+
+{%- set postsSection = site.devspace.posts.section|default('blog') -%}
+{%- set posts = site.pages.showable|filter(p => p.type == 'page' and p.section == postsSection)|sort_by_date -%}
+{%- set highlight = page.highlight|default(false) -%}
+{%- set hero = page.title -%}
+{%- if highlight -%}
+  {%- set hero = hero|replace({(highlight): '<span class="inline-flex relative text-sky-500 before:absolute before:inset-0 before:bg-sky-200 dark:before:bg-sky-500 before:opacity-30 before:-z-10 before:-rotate-2 before:translate-y-1/4">' ~ highlight ~ '</span>'}) -%}
+{%- endif -%}
+
+{%- block spacing %}{% endblock spacing -%}
+
+{%- block hero ~%}
+            <section>
+              <div class="max-w-[700px]">
+                <div class="pt-8 pb-10">
+                  {%- if site.devspace.avatar|default(false) ~%}
+                  <img class="rounded-full mb-5" src="{{ url(asset(site.devspace.avatar)|resize(112)) }}" width="56" height="56" alt="{{ site.title|e }}">
+                  {%- endif ~%}
+                  <h1 class="h1 font-aspekta mb-5">{{ hero|raw }}</h1>
+                  {%- if page.content ~%}
+                  <div class="text-lg text-slate-500 dark:text-slate-400">
+                    {{- page.content ~}}
+                  </div>
+                  {%- elseif site.baseline ~%}
+                  <p class="text-lg text-slate-500 dark:text-slate-400">{{ site.baseline }}</p>
+                  {%- endif ~%}
+                </div>
+              </div>
+            </section>
+{%- endblock hero ~%}
+
+{%- block main ~%}
+                  <div class="space-y-10">
+                    {%- if posts|length > 0 ~%}
+                    <section>
+                      <h2 class="font-aspekta text-xl font-[650] mb-3">{{ site.devspace.posts.title|default('Latest Articles') }}</h2>
+                      {{- include('partials/filters.html.twig') ~}}
+                      <div>
+                        {%- for p in posts|slice(0, site.devspace.posts.max|default(8)) ~%}
+                        {{- include('partials/post.html.twig', {p: p}) ~}}
+                        {%- endfor ~%}
+                      </div>
+                      {%- if posts|length > site.devspace.posts.max|default(8) ~%}
+                      <div class="pt-5">
+                        <a class="btn-sm text-slate-100 bg-sky-500 hover:bg-sky-600" href="{{ url(postsSection) }}">{% trans %}See all articles{% endtrans %}</a>
+                      </div>
+                      {%- endif ~%}
+                    </section>
+                    {%- endif ~%}
+                    {%- for section in page.sections|default([]) ~%}
+                    {{- include('partials/cards.html.twig', {section: section}) ~}}
+                    {%- endfor ~%}
+                  </div>
+{%- endblock main ~%}

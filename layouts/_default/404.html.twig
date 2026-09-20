@@ -1,0 +1,12 @@
+{#- "Page not found" page. ~#}
+{%- extends '_default/page.html.twig' -%}
+
+{%- block main ~%}
+                  <section>
+                    <h1 class="h1 font-aspekta mb-5">{% trans %}Page not found{% endtrans %}</h1>
+                    <p class="text-lg text-slate-500 dark:text-slate-400 mb-8">{% trans %}Sorry, the page you are looking for does not exist.{% endtrans %}</p>
+                    <a class="btn-sm text-slate-100 bg-sky-500 hover:bg-sky-600" href="{{ url(site.home) }}">{% trans %}Back to home{% endtrans %}</a>
+                  </section>
+{%- endblock main ~%}
+
+{%- block aside ~%}{% endblock aside ~%}

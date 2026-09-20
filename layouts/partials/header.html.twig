@@ -1,0 +1,38 @@
+{#- Page header: search form, color scheme switch and call to action button. ~#}
+{%- import 'macros/icons.twig' as icons -%}
+{%- set search = site.devspace.search|default(false) -%}
+{%- set button = site.devspace.button|default(false) ~%}
+            <header>
+              <div class="flex items-center justify-between h-16 before:block">
+                <div class="grow flex justify-end space-x-4">
+                  {%- if search.url|default(false) ~%}
+                  <form class="w-full max-w-[276px]" action="{{ url(search.url) }}" method="get" role="search">
+                    <div class="flex flex-wrap">
+                      <div class="w-full">
+                        <label class="block text-sm sr-only" for="search">{% trans %}Search{% endtrans %}</label>
+                        <div class="relative flex items-center">
+                          <input id="search" name="{{ search.param|default('q') }}" type="search" class="form-input py-1 w-full pl-10">
+                          <div class="absolute inset-0 right-auto flex items-center justify-center">
+                            {{- icons.ui('search') -}}
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </form>
+                  {%- endif ~%}
+                  <div class="flex flex-col justify-center">
+                    <input type="checkbox" name="light-switch" id="light-switch" class="light-switch sr-only">
+                    <label class="relative cursor-pointer p-2" for="light-switch">
+                      {{- icons.ui('sun') -}}
+                      {{- icons.ui('moon') -}}
+                      <span class="sr-only">{% trans %}Switch to light / dark version{% endtrans %}</span>
+                    </label>
+                  </div>
+                  {%- if button.url|default(false) ~%}
+                  <div>
+                    <a class="btn-sm text-slate-100 bg-sky-500 hover:bg-sky-600" href="{{ url(button.url) }}">{{ button.name|default('Subscribe') }}</a>
+                  </div>
+                  {%- endif ~%}
+                </div>
+              </div>
+            </header>

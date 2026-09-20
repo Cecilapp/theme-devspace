@@ -1,0 +1,174 @@
+/**
+ * Styles of the content generated from Markdown (`page.content`).
+ *
+ * The original DevSpace HTML template styles every element with utility classes;
+ * since Cecil renders Markdown, those styles are applied here through `.content`.
+ */
+
+.content {
+  @apply text-slate-500 dark:text-slate-400 space-y-4;
+}
+
+.content > * + h2,
+.content > * + h3,
+.content > * + h4 {
+  @apply mt-8;
+}
+
+.content h2 {
+  @apply text-2xl md:text-3xl font-[650] font-aspekta text-slate-800 dark:text-slate-100;
+}
+
+.content h3 {
+  @apply text-xl md:text-2xl font-[650] font-aspekta text-slate-800 dark:text-slate-100;
+}
+
+.content h4 {
+  @apply text-lg font-[650] font-aspekta text-slate-800 dark:text-slate-100;
+}
+
+.content h5,
+.content h6 {
+  @apply font-[650] font-aspekta text-slate-800 dark:text-slate-100;
+}
+
+.content a {
+  @apply font-medium text-sky-500 hover:underline;
+}
+
+.content strong,
+.content b {
+  @apply font-medium text-slate-800 dark:text-slate-100;
+}
+
+.content ul {
+  @apply list-disc list-outside pl-5 space-y-2;
+}
+
+.content ol {
+  @apply list-decimal list-outside pl-5 space-y-2;
+}
+
+.content li > ul,
+.content li > ol {
+  @apply mt-2;
+}
+
+.content blockquote {
+  @apply pl-4 border-l-2 border-sky-500 italic;
+}
+
+.content img,
+.content video {
+  @apply w-full rounded-sm;
+}
+
+.content figure {
+  @apply space-y-2;
+}
+
+.content figcaption {
+  @apply text-xs text-slate-400 dark:text-slate-500 text-center;
+}
+
+.content hr {
+  @apply border-slate-100 dark:border-slate-800;
+}
+
+.content code {
+  @apply font-pt-mono text-sm;
+}
+
+.content :not(pre) > code {
+  @apply px-1 py-0.5 rounded-xs bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200;
+}
+
+.content pre {
+  @apply overflow-x-auto text-sm text-slate-300 bg-slate-800 p-4 rounded-sm leading-tight;
+}
+
+.content pre code {
+  @apply bg-transparent p-0 text-inherit;
+}
+
+.content table {
+  @apply w-full text-sm text-left;
+}
+
+.content th {
+  @apply font-[650] font-aspekta text-slate-800 dark:text-slate-100 py-2 border-b border-slate-200 dark:border-slate-800;
+}
+
+.content td {
+  @apply py-2 border-b border-slate-100 dark:border-slate-800;
+}
+
+/* Notes (see https://cecil.app/documentation/content/#notes) */
+.content .note {
+  @apply p-4 rounded-sm border border-slate-200 dark:border-slate-800 border-l-4 border-l-sky-500;
+}
+
+.content .note > p {
+  @apply m-0;
+}
+
+/* Syntax highlighting (highlight.php), with the DevSpace palette */
+.content .hljs {
+  @apply text-slate-300;
+}
+
+.content .hljs-comment,
+.content .hljs-quote {
+  @apply text-slate-500 italic;
+}
+
+.content .hljs-keyword,
+.content .hljs-selector-tag,
+.content .hljs-literal,
+.content .hljs-type,
+.content .hljs-string,
+.content .hljs-regexp,
+.content .hljs-addition {
+  @apply text-emerald-400;
+}
+
+.content .hljs-number,
+.content .hljs-symbol,
+.content .hljs-bullet,
+.content .hljs-meta {
+  @apply text-pink-400;
+}
+
+.content .hljs-operator,
+.content .hljs-subst,
+.content .hljs-deletion {
+  @apply text-fuchsia-400;
+}
+
+.content .hljs-title,
+.content .hljs-section,
+.content .hljs-name,
+.content .hljs-attr,
+.content .hljs-attribute,
+.content .hljs-variable,
+.content .hljs-built_in,
+.content .hljs-property,
+.content .hljs-params,
+.content .hljs-tag,
+.content .hljs-selector-id,
+.content .hljs-selector-class {
+  @apply text-sky-300;
+}
+
+.content .hljs-emphasis {
+  @apply italic;
+}
+
+.content .hljs-strong {
+  @apply font-medium;
+}
+
+/* Table of contents */
+.content .toc ul {
+  @apply list-none pl-0 space-y-1;
+}

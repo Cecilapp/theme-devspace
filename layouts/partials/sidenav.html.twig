@@ -1,0 +1,35 @@
+{#- Side navigation, built from the `main` menu. ~#}
+{%- import 'macros/icons.twig' as icons -%}
+{%- set avatar = site.devspace.avatar|default(false) -%}
+        <div class="sticky top-0 w-16 md:w-24 shrink-0 h-screen overflow-y-auto no-scrollbar border-r border-slate-200 dark:border-slate-800">
+          <div class="h-full flex flex-col justify-between after:flex-1 after:mt-auto">
+            <div class="flex-1">
+              {%- if avatar and page.type != 'homepage' ~%}
+              <div class="flex justify-center my-4">
+                <a href="{{ url(site.home) }}">
+                  <img class="rounded-full" src="{{ url(asset(avatar)|resize(64)) }}" width="32" height="32" alt="{{ site.title|e }}">
+                </a>
+              </div>
+              {%- endif ~%}
+            </div>
+            <div class="flex-1 grow flex items-center">
+              <nav class="w-full">
+                <ul class="space-y-4">
+                {%- for entry in site.menus.main|sort_by_weight ~%}
+                  {#- the icon is picked from the entry ID, and can be overridden with `devspace.icons` ~#}
+                  {%- set icon = entry.id == 'index' ? 'home' : entry.id -%}
+                  {%- set icon = site.devspace.icons[entry.id]|default(icon) -%}
+                  {#- the entry is active for the page itself, and for the pages of its section ~#}
+                  {%- set active = page.id == entry.id or (page.section|default(false) and page.section == entry.id) ~%}
+                  <li class="py-2">
+                    <a class="{% if active %}text-sky-500 relative after:absolute after:w-0.5 after:right-0 after:top-0 after:bottom-0 after:bg-sky-500{% else %}text-slate-400 hover:text-slate-500 dark:text-slate-500 dark:hover:text-slate-400{% endif %} w-full h-6 flex items-center justify-center" href="{{ url(entry.url) }}"{% if active %} aria-current="page"{% endif %}>
+                      <span class="sr-only">{{ entry.name }}</span>
+                      {{- icons.nav(icon) -}}
+                    </a>
+                  </li>
+                {%- endfor ~%}
+                </ul>
+              </nav>
+            </div>
+          </div>
+        </div>

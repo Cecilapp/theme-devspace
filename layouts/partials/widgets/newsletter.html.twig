@@ -1,0 +1,26 @@
+{#- Newsletter subscription form. ~#}
+{%- set widget = page.newsletter ?? site.devspace.newsletter ?? {} ~%}
+                  <div class="rounded-lg border border-slate-200 dark:border-slate-800 dark:bg-linear-to-t dark:from-slate-800 dark:to-slate-800/30 odd:rotate-1 even:-rotate-1 p-5">
+                    {%- if widget.avatars|default([])|length > 0 ~%}
+                    <div class="text-center mb-1">
+                      <div class="inline-flex -space-x-3 -ml-0.5">
+                        {%- for avatar in widget.avatars ~%}
+                        <img class="rounded-full border-2 border-white dark:border-slate-800 box-content" src="{{ url(asset(avatar)|resize(48)) }}" width="24" height="24" alt="" aria-hidden="true">
+                        {%- endfor ~%}
+                      </div>
+                    </div>
+                    {%- endif ~%}
+                    <div class="text-center mb-8">
+                      <div class="font-aspekta font-[650] mb-1">{{ widget.title|default('Never miss an update!') }}</div>
+                      {%- if widget.text|default(false) ~%}
+                      <p class="text-sm text-slate-500 dark:text-slate-400">{{ widget.text }}</p>
+                      {%- endif ~%}
+                    </div>
+                    <form{% if widget.action|default(false) %} action="{{ widget.action }}" method="{{ widget.method|default('post') }}"{% endif %}>
+                      <div class="mb-2">
+                        <label class="sr-only" for="newsletter">{% trans %}Your email…{% endtrans %}</label>
+                        <input id="newsletter" name="{{ widget.param|default('email') }}" type="email" class="form-input py-1 w-full" placeholder="{% trans %}Your email…{% endtrans %}" required>
+                      </div>
+                      <button class="btn-sm w-full text-slate-100 bg-sky-500 hover:bg-sky-600" type="submit">{{ widget.button|default('Subscribe') }}</button>
+                    </form>
+                  </div>

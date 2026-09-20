@@ -1,0 +1,18 @@
+{#- Sponsor. ~#}
+{%- set widget = page.sponsor ?? site.devspace.sponsor ?? {} -%}
+{%- if widget.title|default(false) ~%}
+                  <div class="rounded-lg border border-slate-200 dark:border-slate-800 dark:bg-linear-to-t dark:from-slate-800 dark:to-slate-800/30 odd:rotate-1 even:-rotate-1 p-5">
+                    <div class="flex items-center space-x-3 mb-2">
+                      {%- if widget.image|default(false) ~%}
+                      <img src="{{ url(asset(widget.image)) }}" height="20" alt="{{ widget.title|e }}">
+                      {%- endif ~%}
+                      <span class="text-xs text-slate-400 dark:text-slate-500">*{{ widget.label|default('Sponsor') }}</span>
+                    </div>
+                    <div class="font-aspekta font-[650] mb-1">
+                      {%- if widget.url|default(false) %}<a class="hover:text-sky-500" href="{{ url(widget.url) }}">{{ widget.title }}</a>{% else %}{{ widget.title }}{% endif -%}
+                    </div>
+                    {%- if widget.text|default(false) ~%}
+                    <p class="text-sm text-slate-500 dark:text-slate-400">{{ widget.text }}</p>
+                    {%- endif ~%}
+                  </div>
+{%- endif ~%}

@@ -1,0 +1,23 @@
+{
+  "name": "cecil/theme-devspace",
+  "type": "cecil-theme",
+  "description": "Cecil theme: DevSpace",
+  "keywords": ["Cecil", "theme", "blog", "portfolio", "DevSpace"],
+  "license": "proprietary",
+  "require": {
+    "cecil/theme-installer": "^1.4|^2.0"
+  },
+  "extra": {
+    "name": "devspace",
+    "branch-alias": {
+      "dev-master": "1.x-dev"
+    }
+  },
+  "minimum-stability": "dev",
+  "prefer-stable": true,
+  "config": {
+    "allow-plugins": {
+      "cecil/theme-installer": true
+    }
+  }
+}

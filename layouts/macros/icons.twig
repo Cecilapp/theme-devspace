@@ -1,0 +1,78 @@
+{#
+  SVG icons used by the theme.
+
+  Usage:
+    {% import 'macros/icons.twig' as icons %}
+    {{ icons.nav('home') }}
+    {{ icons.social('github') }}
+    {{ icons.ui('arrow-right', 'fill-current') }}
+#}
+
+{#- Side navigation icons (20x20-ish, two paths: a translucent shape + the outline) -#}
+{% macro nav(name) %}
+{%- if name == 'home' -%}
+<svg class="fill-current" xmlns="http://www.w3.org/2000/svg" width="21" height="19" aria-hidden="true"><path fill-opacity=".16" d="M4 7v11h13V7l-6.5-5z"/><path d="m10.433 3.242-8.837 6.56L.404 8.198l10.02-7.44L20.59 8.194l-1.18 1.614-8.977-6.565ZM16 17V9h2v10H3V9h2v8h11Z"/></svg>
+{%- elseif name == 'about' -%}
+<svg class="fill-current" xmlns="http://www.w3.org/2000/svg" width="20" height="20" aria-hidden="true"><path fill-opacity=".16" d="M10 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8Z"/><path d="M9 5h2v2H9V5Zm0 4h2v6H9V9Zm1-9C4.48 0 0 4.48 0 10s4.48 10 10 10 10-4.48 10-10S15.52 0 10 0Zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8Z"/></svg>
+{%- elseif name == 'projects' -%}
+<svg class="fill-current" xmlns="http://www.w3.org/2000/svg" width="20" height="20" aria-hidden="true"><path fill-opacity=".16" d="M1 4h18v10H1z"/><path d="M8 3h4V2H8v1ZM6 3V0h8v3h6v12H0V3h6ZM2 5v8h16V5H2Zm14 13v-2h2v4H2v-4h2v2h12Z"/></svg>
+{%- elseif name == 'resume' -%}
+<svg class="fill-current" xmlns="http://www.w3.org/2000/svg" width="18" height="20" aria-hidden="true"><path fill-opacity=".16" fill-rule="nonzero" d="M1 5h16v14H1z"/><path fill-rule="nonzero" d="M2 6v12h14V6H2Zm16-2v16H0V4h18ZM2 2V0h14v2H2Z"/></svg>
+{%- elseif name == 'blog' -%}
+<svg class="fill-current" xmlns="http://www.w3.org/2000/svg" width="20" height="20" aria-hidden="true"><path fill-opacity=".16" d="M2 2h16v16H2z"/><path d="M0 0v20h20V0H0Zm18 18H2V2h16v16ZM4 5h12v2H4V5Zm0 4h12v2H4V9Zm0 4h8v2H4v-2Z"/></svg>
+{%- elseif name == 'subscribe' -%}
+<svg class="fill-current" xmlns="http://www.w3.org/2000/svg" width="21" height="21" aria-hidden="true"><path fill-opacity=".16" d="m13.4 18-3-7.4-7.4-3L19 2z"/><path d="M13.331 15.169 17.37 3.63 5.831 7.669l5.337 2.163 2.163 5.337Zm-3.699-3.801L.17 7.53 20.63.37l-7.161 20.461-3.837-9.463Z"/></svg>
+{%- else -%}
+<svg class="fill-current" xmlns="http://www.w3.org/2000/svg" width="20" height="20" aria-hidden="true"><path fill-opacity=".16" d="M2 2h16v16H2z"/><path d="M0 0v20h20V0H0Zm18 18H2V2h16v16Z"/></svg>
+{%- endif -%}
+{% endmacro %}
+
+{#- Social networks icons (32x32 viewBox, `fill-current`) -#}
+{% macro social(name) %}
+{%- if name == 'x' or name == 'twitter' -%}
+<svg class="w-8 h-8 fill-current" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="m13.063 9 3.495 4.475L20.601 9h2.454l-5.359 5.931L24 23h-4.938l-3.866-4.893L10.771 23H8.316l5.735-6.342L8 9h5.063Zm-.74 1.347h-1.457l8.875 11.232h1.36l-8.778-11.232Z"/></svg>
+{%- elseif name == 'youtube' -%}
+<svg class="w-8 h-8 fill-current" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M23.8 12.8c-.2-1.3-.8-2.2-2.2-2.4C19.4 10 16 10 16 10s-3.4 0-5.6.4c-1.4.2-2.1 1.1-2.2 2.4C8 14.1 8 16 8 16s0 1.9.2 3.2c.2 1.3.8 2.2 2.2 2.4 2.2.4 5.6.4 5.6.4s3.4 0 5.6-.4c1.4-.3 2-1.1 2.2-2.4.2-1.3.2-3.2.2-3.2s0-1.9-.2-3.2ZM14 19v-6l5 3-5 3Z"/></svg>
+{%- elseif name == 'github' -%}
+<svg class="w-8 h-8 fill-current" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M16 8.2c-4.4 0-8 3.6-8 8 0 3.5 2.3 6.5 5.5 7.6.4.1.5-.2.5-.4V22c-2.2.5-2.7-1-2.7-1-.4-.9-.9-1.2-.9-1.2-.7-.5.1-.5.1-.5.8.1 1.2.8 1.2.8.7 1.3 1.9.9 2.3.7.1-.5.3-.9.5-1.1-1.8-.2-3.6-.9-3.6-4 0-.9.3-1.6.8-2.1-.1-.2-.4-1 .1-2.1 0 0 .7-.2 2.2.8.6-.2 1.3-.3 2-.3s1.4.1 2 .3c1.5-1 2.2-.8 2.2-.8.4 1.1.2 1.9.1 2.1.5.6.8 1.3.8 2.1 0 3.1-1.9 3.7-3.7 3.9.3.4.6.9.6 1.6v2.2c0 .2.1.5.6.4 3.2-1.1 5.5-4.1 5.5-7.6-.1-4.4-3.7-8-8.1-8z"/></svg>
+{%- elseif name == 'telegram' -%}
+<svg class="w-8 h-8 fill-current" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M22.968 10.276a.338.338 0 0 0-.232-.253 1.192 1.192 0 0 0-.63.045s-14.019 5.038-14.82 5.596c-.172.121-.23.19-.259.272-.138.4.293.573.293.573l3.613 1.177a.388.388 0 0 0 .183-.011c.822-.519 8.27-5.222 8.7-5.38.068-.02.118 0 .1.049-.172.6-6.606 6.319-6.64 6.354a.138.138 0 0 0-.05.118l-.337 3.528s-.142 1.1.956 0a30.66 30.66 0 0 1 1.9-1.738c1.242.858 2.58 1.806 3.156 2.3a1 1 0 0 0 .732.283.825.825 0 0 0 .7-.622s2.561-10.275 2.646-11.658c.008-.135.021-.217.021-.317a1.177 1.177 0 0 0-.032-.316Z"/></svg>
+{%- elseif name == 'facebook' -%}
+<svg class="w-8 h-8 fill-current" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M14.023 24 14 17h-3v-3h3v-2c0-2.7 1.672-4 4.08-4 1.153 0 2.144.086 2.433.124v2.821h-1.67c-1.31 0-1.563.623-1.563 1.536V14H21l-1 3h-2.72v7h-3.257Z"/></svg>
+{%- elseif name == 'linkedin' -%}
+<svg class="w-8 h-8 fill-current" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M23 9H9a1 1 0 0 0-1 1v14a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1V10a1 1 0 0 0-1-1ZM12.4 22.4h-2.2v-7.1h2.2v7.1Zm-1.1-8.1a1.3 1.3 0 1 1 0-2.6 1.3 1.3 0 0 1 0 2.6Zm10.5 8.1h-2.2v-3.5c0-.8 0-1.9-1.2-1.9s-1.3.9-1.3 1.8v3.6h-2.2v-7.1h2.1v1h.1c.3-.6 1-1.2 2.1-1.2 2.3 0 2.7 1.5 2.7 3.4v3.9Z"/></svg>
+{%- elseif name == 'mastodon' -%}
+<svg class="w-8 h-8 fill-current" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M23.3 13.6c0-3.3-2.1-4.2-2.1-4.2-1.1-.5-2.9-.7-4.8-.7h-.1c-1.9 0-3.7.2-4.8.7 0 0-2.1.9-2.1 4.2v2.7c0 3.6.6 6.7 4.3 7.1 1.4.2 2.7.2 3.9.1V22c-1.6.1-3.1 0-3.6-.4-.6-.5-.6-1.3-.6-1.3s1.5.4 3.4.5c1.1 0 2.1-.1 3.2-.2 2-.2 3.8-1.5 4-2.7.3-1.8.3-4.3.3-4.3Zm-2.8 4.1h-1.7v-4.2c0-.9-.4-1.3-1.1-1.3-.8 0-1.2.5-1.2 1.5v2.2h-1.7v-2.2c0-1-.4-1.5-1.2-1.5-.7 0-1.1.4-1.1 1.3v4.2h-1.7v-4.3c0-.9.2-1.6.7-2.1.5-.5 1.1-.8 1.9-.8.9 0 1.6.4 2 1.1l.4.7.4-.7c.4-.7 1.1-1.1 2-1.1.8 0 1.4.3 1.9.8.5.5.7 1.2.7 2.1v4.3Z"/></svg>
+{%- elseif name == 'instagram' -%}
+<svg class="w-8 h-8 fill-current" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M16 10.4c1.8 0 2 0 2.7.1.7 0 1 .1 1.3.2.3.1.6.3.8.5.2.2.4.5.5.8.1.3.2.6.2 1.3v5.4c0 .7-.1 1-.2 1.3-.1.3-.3.6-.5.8-.2.2-.5.4-.8.5-.3.1-.6.2-1.3.2h-5.4c-.7 0-1-.1-1.3-.2-.3-.1-.6-.3-.8-.5-.2-.2-.4-.5-.5-.8-.1-.3-.2-.6-.2-1.3v-5.4c0-.7.1-1 .2-1.3.1-.3.3-.6.5-.8.2-.2.5-.4.8-.5.3-.1.6-.2 1.3-.2h2.7ZM16 8.9c-1.9 0-2.1 0-2.9.1-.7 0-1.3.2-1.7.4-.5.2-.9.4-1.3.8-.4.4-.6.8-.8 1.3-.2.4-.3 1-.4 1.7v5.8c0 .7.2 1.3.4 1.7.2.5.4.9.8 1.3.4.4.8.6 1.3.8.4.2 1 .3 1.7.4h5.8c.7 0 1.3-.2 1.7-.4.5-.2.9-.4 1.3-.8.4-.4.6-.8.8-1.3.2-.4.3-1 .4-1.7v-5.8c0-.7-.2-1.3-.4-1.7-.2-.5-.4-.9-.8-1.3-.4-.4-.8-.6-1.3-.8-.4-.2-1-.3-1.7-.4H16Zm0 3.5a3.6 3.6 0 1 0 0 7.2 3.6 3.6 0 0 0 0-7.2Zm0 5.9a2.3 2.3 0 1 1 0-4.6 2.3 2.3 0 0 1 0 4.6Zm4.6-6a.8.8 0 1 1-1.7 0 .8.8 0 0 1 1.7 0Z"/></svg>
+{%- elseif name == 'rss' or name == 'feed' -%}
+<svg class="w-8 h-8 fill-current" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M10.5 20a1.75 1.75 0 1 1 0 3.5 1.75 1.75 0 0 1 0-3.5ZM9 15.5a8 8 0 0 1 8 8h-2a6 6 0 0 0-6-6v-2Zm0-4.5c6.9 0 12.5 5.6 12.5 12.5h-2C19.5 17.7 14.8 13 9 13v-2Z"/></svg>
+{%- elseif name == 'email' or name == 'mail' -%}
+<svg class="w-8 h-8 fill-current" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M9 10h14a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H9a1 1 0 0 1-1-1V11a1 1 0 0 1 1-1Zm13.2 2H9.8l6.2 4.2 6.2-4.2ZM10 20h12v-5.6l-6 4-6-4V20Z"/></svg>
+{%- else -%}
+<svg class="w-8 h-8 fill-current" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M20 14c1.654 0 3-1.346 3-3s-1.346-3-3-3-3 1.346-3 3c0 .223.029.439.075.649l-3.22 2.012A2.97 2.97 0 0 0 12 13c-1.654 0-3 1.346-3 3s1.346 3 3 3a2.97 2.97 0 0 0 1.855-.661l3.22 2.012c-.046.21-.075.426-.075.649 0 1.654 1.346 3 3 3s3-1.346 3-3-1.346-3-3-3a2.97 2.97 0 0 0-1.855.661l-3.22-2.012c.046-.21.075-.426.075-.649 0-.223-.029-.439-.075-.649l3.22-2.012A2.97 2.97 0 0 0 20 14Z"/></svg>
+{%- endif -%}
+{% endmacro %}
+
+{#- Interface icons -#}
+{% macro ui(name, class) %}
+{%- if name == 'arrow-right' -%}
+<svg class="{{ class|default('fill-current') }}" xmlns="http://www.w3.org/2000/svg" width="14" height="12" aria-hidden="true"><path d="M9.586 5 6.293 1.707 7.707.293 13.414 6l-5.707 5.707-1.414-1.414L9.586 7H0V5h9.586Z"/></svg>
+{%- elseif name == 'arrow-left' -%}
+<svg class="{{ class|default('fill-current') }}" xmlns="http://www.w3.org/2000/svg" width="34" height="34" aria-hidden="true"><path d="m16.414 17 3.293 3.293-1.414 1.414L13.586 17l4.707-4.707 1.414 1.414z"/></svg>
+{%- elseif name == 'search' -%}
+<svg class="{{ class|default('w-4 h-4 shrink-0 mx-3') }}" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path class="fill-slate-400" d="M7 14c-3.86 0-7-3.14-7-7s3.14-7 7-7 7 3.14 7 7-3.14 7-7 7zM7 2C4.243 2 2 4.243 2 7s2.243 5 5 5 5-2.243 5-5-2.243-5-5-5zm8.707 12.293a.999.999 0 11-1.414 1.414L11.9 13.314a8.019 8.019 0 001.414-1.414l2.393 2.393z"/></svg>
+{%- elseif name == 'sun' -%}
+<svg class="{{ class|default('dark:hidden') }}" width="16" height="16" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path class="fill-slate-300" d="M7 0h2v2H7zM12.88 1.637l1.414 1.415-1.415 1.413-1.413-1.414zM14 7h2v2h-2zM12.95 14.433l-1.414-1.413 1.413-1.415 1.415 1.414zM7 14h2v2H7zM2.98 14.364l-1.413-1.415 1.414-1.414 1.414 1.415zM0 7h2v2H0zM3.05 1.706 4.463 3.12 3.05 4.535 1.636 3.12z"/><path class="fill-slate-400" d="M8 4C5.8 4 4 5.8 4 8s1.8 4 4 4 4-1.8 4-4-1.8-4-4-4Z"/></svg>
+{%- elseif name == 'moon' -%}
+<svg class="{{ class|default('hidden dark:block') }}" width="16" height="16" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path class="fill-slate-400" d="M6.2 1C3.2 1.8 1 4.6 1 7.9 1 11.8 4.2 15 8.1 15c3.3 0 6-2.2 6.9-5.2C9.7 11.2 4.8 6.3 6.2 1Z"/><path class="fill-slate-500" d="M12.5 5a.625.625 0 0 1-.625-.625 1.252 1.252 0 0 0-1.25-1.25.625.625 0 1 1 0-1.25 1.252 1.252 0 0 0 1.25-1.25.625.625 0 1 1 1.25 0c.001.69.56 1.249 1.25 1.25a.625.625 0 1 1 0 1.25c-.69.001-1.249.56-1.25 1.25A.625.625 0 0 1 12.5 5Z"/></svg>
+{%- elseif name == 'play' -%}
+<svg xmlns="http://www.w3.org/2000/svg" width="41" height="41" aria-hidden="true"><circle class="fill-white" cx="20" cy="20" r="20" fill-opacity=".88"/><path class="fill-sky-500" d="m24.765 19.5-6.263-4.375a.626.626 0 0 0-1.002.5v8.75c0 .5.564.812 1.002.5l6.263-4.375a.65.65 0 0 0 0-1Z"/></svg>
+{%- elseif name == 'check' -%}
+<svg class="{{ class|default('w-3 h-3 fill-current text-sky-500 mr-3 mt-1.5 shrink-0') }}" viewBox="0 0 12 12" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M10.28 2.28L3.989 8.575 1.695 6.28A1 1 0 00.28 7.695l3 3a1 1 0 001.414 0l7-7A1 1 0 0010.28 2.28z"/></svg>
+{%- elseif name == 'award' -%}
+<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" aria-hidden="true"><path fill="#FACC15" fill-rule="nonzero" d="M10 20a.665.665 0 0 1-.471-.195l-2.471-2.472H3.334a.666.666 0 0 1-.667-.666v-3.724L.196 10.47a.666.666 0 0 1 0-.942l2.47-2.472V3.333c0-.368.299-.666.668-.666h3.724L9.528.195c.262-.26.683-.26.944 0l2.47 2.472h3.725c.369 0 .667.298.667.666v3.724l2.471 2.472c.26.26.26.682 0 .942l-2.471 2.472v3.724a.666.666 0 0 1-.667.666h-3.724l-2.471 2.472c-.13.13-.301.195-.472.195Zm0-6.364a3.636 3.636 0 1 0 0-7.272 3.636 3.636 0 0 0 0 7.272Z"/></svg>
+{%- elseif name == 'dot' -%}
+<svg class="{{ class|default('fill-sky-500') }}" xmlns="http://www.w3.org/2000/svg" width="16" height="16" aria-hidden="true"><circle cx="8" cy="8" r="4"/></svg>
+{%- endif -%}
+{% endmacro %}

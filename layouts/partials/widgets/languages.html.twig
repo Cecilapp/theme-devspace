@@ -1,0 +1,18 @@
+{#- Spoken languages, as labelled pie charts. ~#}
+{%- set widget = page.languages ?? site.devspace.languages ?? {} -%}
+{%- if widget.items|default([])|length > 0 ~%}
+                  <div class="rounded-lg border border-slate-200 dark:border-slate-800 dark:bg-linear-to-t dark:from-slate-800 dark:to-slate-800/30 odd:rotate-1 even:-rotate-1 p-5">
+                    <div class="font-aspekta font-[650] mb-3">{{ widget.title|default('Languages') }}</div>
+                    <ul class="space-y-3">
+                      {%- for item in widget.items ~%}
+                      <li class="flex justify-between items-center">
+                        <div class="grow inline-flex mr-1.5 truncate">
+                          {%- if item.flag|default(false) %}<span class="text-base mr-1.5">{{ item.flag }}</span> {% endif -%}
+                          <span class="font-aspekta font-[650] text-sm truncate">{{ item.name }}</span>
+                        </div>
+                        <div class="shrink-0 relative w-5 h-5 rounded-full bg-slate-200 dark:bg-slate-700 after:absolute after:inset-0 after:rounded-full after:w-3 after:h-3 after:m-auto after:bg-white dark:after:bg-slate-800" style="background-image:conic-gradient(var(--color-sky-500) {{ item.level|default(0) }}%, transparent 0)" role="progressbar" aria-label="{{ item.name|e }}" aria-valuenow="{{ item.level|default(0) }}" aria-valuemin="0" aria-valuemax="100"></div>
+                      </li>
+                      {%- endfor ~%}
+                    </ul>
+                  </div>
+{%- endif ~%}

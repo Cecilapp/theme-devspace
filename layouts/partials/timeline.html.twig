@@ -1,0 +1,46 @@
+{#-
+  A vertical timeline. Expects `section`:
+    title: Work Experience
+    timeline: true  (draws the vertical line between items; default: true)
+    items:
+      - date: May 2020 · Present
+        title: Senior Front-end Engineer
+        subtitle: Google
+        text: In my role as a Senior Software Engineer…
+        image: images/logo-google.svg
+        rounded: true  (displays the image as a rounded avatar)
+~#}
+{%- if section.items|default([])|length > 0 ~%}
+                      <div class="space-y-8">
+                        {%- if section.title|default(false) ~%}
+                        <h2 class="h3 font-aspekta text-slate-800 dark:text-slate-100">{{ section.title }}</h2>
+                        {%- endif ~%}
+                        <ul class="space-y-8">
+                          {%- for item in section.items ~%}
+                          <li class="relative group">
+                            <div class="flex items-start{% if (section.timeline ?? true) %} before:absolute before:left-0 before:h-full before:w-px before:bg-slate-200 dark:before:bg-slate-800 before:self-start before:ml-[28px] before:-translate-x-1/2 before:translate-y-8 group-last-of-type:before:hidden{% endif %}">
+                              <div class="absolute left-0 h-14 w-14 flex items-center justify-center{% if not item.rounded|default(false) %} border border-slate-200 dark:border-slate-800 dark:bg-linear-to-t dark:from-slate-800 dark:to-slate-800/30{% endif %} bg-white dark:bg-slate-900 rounded-full">
+                                {%- if item.image|default(false) ~%}
+                                <img class="{% if item.rounded|default(false) %}rounded-full{% endif %}" src="{{ url(asset(item.image)) }}" {% if item.rounded|default(false) %}width="56" height="56"{% else %}width="24"{% endif %} alt="{{ item.subtitle|default(item.title)|e }}">
+                                {%- else ~%}
+                                <span class="w-2 h-2 rounded-full bg-sky-500" aria-hidden="true"></span>
+                                {%- endif ~%}
+                              </div>
+                              <div class="pl-20 space-y-1">
+                                {%- if item.date|default(false) ~%}
+                                <div class="text-xs text-slate-500 uppercase">{{ item.date }}</div>
+                                {%- endif ~%}
+                                <div class="font-aspekta font-[650] text-slate-800 dark:text-slate-100">{{ item.title }}</div>
+                                {%- if item.subtitle|default(false) ~%}
+                                <div class="text-sm font-medium text-slate-800 dark:text-slate-100">{{ item.subtitle }}</div>
+                                {%- endif ~%}
+                                {%- if item.text|default(false) ~%}
+                                <div class="text-sm text-slate-500 dark:text-slate-400">{{ item.text }}</div>
+                                {%- endif ~%}
+                              </div>
+                            </div>
+                          </li>
+                          {%- endfor ~%}
+                        </ul>
+                      </div>
+{%- endif ~%}

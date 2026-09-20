@@ -1,0 +1,96 @@
+{#- A blog post: back link, meta, share buttons, content, terms and sibling pages. ~#}
+{%- extends '_default/page.html.twig' -%}
+{%- import 'macros/icons.twig' as icons -%}
+
+{%- set share = site.devspace.share|default([]) -%}
+{%- set vocabularies = site.taxonomies|default({}) -%}
+
+{%- block main ~%}
+                  <div class="mb-3">
+                    <a class="inline-flex text-sky-500 rounded-full border border-slate-200 dark:border-slate-800 dark:bg-linear-to-t dark:from-slate-800 dark:to-slate-800/30" href="{{ url(page.section|default(site.home)) }}">
+                      <span class="sr-only">{% trans %}Back{% endtrans %}</span>
+                      {{- icons.ui('arrow-left', 'fill-current') -}}
+                    </a>
+                  </div>
+                  <article>
+                    <header>
+                      <div class="flex items-center justify-between mb-1">
+                        <div class="text-xs text-slate-500 uppercase">
+                          {%- if page.date ~%}
+                          <span class="text-sky-500">—</span> <time datetime="{{ page.date|date('Y-m-d') }}">{{ page.date|format_date('medium') }}</time>
+                          {%- endif ~%}
+                          {%- if page.content ~%}
+                          <span class="text-slate-400 dark:text-slate-600">·</span> {{ max(readtime(page.content), 1) }} {% trans %}min read{% endtrans %}
+                          {%- endif ~%}
+                        </div>
+                        {%- if share|length > 0 ~%}
+                        {%- set permalink = url(page, {canonical: true})|url_encode -%}
+                        {%- set titleEncoded = page.title|url_encode ~%}
+                        <ul class="inline-flex">
+                          {%- for network in share ~%}
+                          {%- set href = '#' -%}
+                          {%- if network == 'x' or network == 'twitter' -%}
+                            {%- set href = 'https://x.com/intent/post?url=' ~ permalink ~ '&text=' ~ titleEncoded -%}
+                          {%- elseif network == 'facebook' -%}
+                            {%- set href = 'https://www.facebook.com/sharer/sharer.php?u=' ~ permalink -%}
+                          {%- elseif network == 'linkedin' -%}
+                            {%- set href = 'https://www.linkedin.com/sharing/share-offsite/?url=' ~ permalink -%}
+                          {%- elseif network == 'telegram' -%}
+                            {%- set href = 'https://t.me/share/url?url=' ~ permalink ~ '&text=' ~ titleEncoded -%}
+                          {%- elseif network == 'email' -%}
+                            {%- set href = 'mailto:?subject=' ~ titleEncoded ~ '&body=' ~ permalink -%}
+                          {%- endif ~%}
+                          <li>
+                            <a class="flex justify-center items-center text-slate-400 dark:text-slate-500 hover:text-sky-500 dark:hover:text-sky-500 transition duration-150 ease-in-out" href="{{ href }}" target="_blank" rel="noreferrer" aria-label="{{ network|capitalize }}">
+                              {{- icons.social(network) -}}
+                            </a>
+                          </li>
+                          {%- endfor ~%}
+                        </ul>
+                        {%- endif ~%}
+                      </div>
+                      <h1 class="h1 font-aspekta mb-4">{{ page.title }}</h1>
+                    </header>
+                    {%- if page.image|default(false) ~%}
+                    <img class="w-full mb-8" src="{{ url(asset(page.image)) }}" alt="{{ page.title|e }}">
+                    {%- endif ~%}
+                    <div class="content">
+                      {{- page.content ~}}
+                    </div>
+                    <footer class="mt-8 space-y-6">
+                      {%- set terms = [] -%}
+                      {%- for vocabulary in vocabularies -%}
+                        {%- if page[vocabulary.id] is defined -%}
+                          {%- for term in page[vocabulary.id] -%}
+                            {%- set terms = terms|merge([{name: term, id: vocabulary.id ~ '/' ~ term}]) -%}
+                          {%- endfor -%}
+                        {%- endif -%}
+                      {%- endfor ~%}
+                      {%- if terms|length > 0 ~%}
+                      <ul class="flex flex-wrap gap-2">
+                        {%- for term in terms ~%}
+                        <li>
+                          <a class="text-xs inline-flex items-center font-medium text-sky-500 border border-slate-200 dark:border-slate-800 hover:border-sky-500 rounded-full px-3 h-6 transition-colors" href="{{ url(term.id, {language: site.language}) }}">#{{ term.name }}</a>
+                        </li>
+                        {%- endfor ~%}
+                      </ul>
+                      {%- endif ~%}
+                      {%- if page.prev is defined or page.next is defined ~%}
+                      <nav class="flex justify-between items-start gap-4 pt-6 border-t border-slate-200 dark:border-slate-800 text-sm">
+                        <div>
+                          {%- if page.prev is defined ~%}
+                          <div class="text-xs text-slate-500 uppercase mb-1">{% trans %}Previous{% endtrans %}</div>
+                          <a class="font-aspekta font-[650] hover:text-sky-500" href="{{ url(page.prev) }}" rel="prev">{{ page.prev.title }}</a>
+                          {%- endif ~%}
+                        </div>
+                        <div class="text-right">
+                          {%- if page.next is defined ~%}
+                          <div class="text-xs text-slate-500 uppercase mb-1">{% trans %}Next{% endtrans %}</div>
+                          <a class="font-aspekta font-[650] hover:text-sky-500" href="{{ url(page.next) }}" rel="next">{{ page.next.title }}</a>
+                          {%- endif ~%}
+                        </div>
+                      </nav>
+                      {%- endif ~%}
+                    </footer>
+                  </article>
+{%- endblock main ~%}

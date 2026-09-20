@@ -1,0 +1,11 @@
+{#- Right sidebar: widgets listed in the page front matter (`widgets`) or in `devspace.widgets`. ~#}
+{%- set widgets = page.widgets ?? site.devspace.widgets ?? [] -%}
+{%- if widgets|length > 0 ~%}
+              <aside class="md:w-[240px] lg:w-[300px] shrink-0">
+                <div class="space-y-6">
+                  {%- for widget in widgets ~%}
+                  {%- include 'partials/widgets/' ~ widget ~ '.html.twig' ignore missing ~%}
+                  {%- endfor ~%}
+                </div>
+              </aside>
+{%- endif ~%}

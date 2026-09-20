@@ -1,0 +1,47 @@
+taxonomies:
+  categories: category
+  tags: tag
+pages:
+  pagination:
+    max: 8
+    path: page
+devspace:
+  #avatar: images/me.jpg  # asset path of the avatar, displayed in the side navigation and on the homepage
+  #copyright: 'Your name' # footer copyright holder (default: site title)
+  filters: categories     # vocabulary used as filter tabs above the posts list (false to disable)
+  icons: {}               # overrides the side navigation icons, by menu entry ID (home, about, projects, resume, subscribe)
+  posts:
+    section: blog         # section used as source of the posts listed on the homepage
+    title: Latest Articles
+    max: 8
+  #search:
+  #  url: /search         # if set, displays a search form in the header
+  #  param: q
+  #button:
+  #  name: Subscribe      # if `url` is set, displays a call to action button in the header
+  #  url: /subscribe
+  share: []               # share buttons of a post: x, facebook, linkedin, telegram, email
+  social: {}              # footer links, e.g.: {github: 'https://github.com/…'}
+  widgets: []             # right sidebar widgets: newsletter, sponsor, ebook, popular, skills, languages, references
+  newsletter:
+    title: 'Never miss an update!'
+    #text: 'Subscribe and join 100K+ developers.'
+    #action: 'https://…'  # form action (empty for a non-functional demo form)
+    #method: post
+    #param: email
+    #button: Subscribe
+    #avatars: []
+  #sponsor:
+  #  label: Sponsor
+  #  title: ''
+  #  text: ''
+  #  url: ''
+  #  image: ''
+  #ebook:
+  #  title: 'Free E-Book'
+  #  image: images/book.png
+  #  url: ''
+  popular:
+    title: Popular Posts
+    max: 5
+    #pages: []            # page IDs; if empty, pages with `popular: true` in their front matter are used

@@ -95,29 +95,29 @@ skills:
 ---
 ```
 
-| Widget       | Data                                                                                   |
-|--------------|----------------------------------------------------------------------------------------|
+| Widget       | Data                                                                                    |
+|--------------|-----------------------------------------------------------------------------------------|
 | `newsletter` | `title`, `text`, `button`, `action`, `method`, `param`, `avatars` (list of asset paths) |
 | `sponsor`    | `label`, `title`, `text`, `url`, `image`                                                |
 | `ebook`      | `title`, `image`, `url`                                                                 |
-| `popular`    | `title`, `max`, `pages` (list of page IDs; else pages with `popular: true`)              |
+| `popular`    | `title`, `max`, `pages` (list of page IDs; else pages with `popular: true`)             |
 | `skills`     | `title`, `items` of `name` + `level` (0-100)                                            |
 | `languages`  | `title`, `items` of `name` + `flag` + `level` (0-100)                                   |
 | `references` | `title`, `items` of `name` + `text` + `image` + `url`                                   |
 
 ## Layouts
 
-| Layout               | Used for                                                                 |
-|----------------------|--------------------------------------------------------------------------|
-| `index`              | the homepage: hero, latest posts, and card sections                      |
-| `_default/page`      | a standard page: title, image, content, and `sections`                   |
-| `_default/list`      | section and taxonomy term pages                                          |
-| `_default/vocabulary`| the list of terms of a vocabulary                                        |
-| `_default/404`       | the "page not found" page                                                |
-| `post`               | a blog post (`blog/page` extends it)                                     |
-| `projects`           | `layout: projects` — groups of cards                                     |
-| `resume`             | `layout: resume` — timelines                                             |
-| `subscribe`          | `layout: subscribe` — pitch, benefits, form and testimonials             |
+| Layout               | Used for                                                     |
+|----------------------|--------------------------------------------------------------|
+| `index`              | the homepage: hero, latest posts, and card sections          |
+| `_default/page`      | a standard page: title, image, content, and `sections`       |
+| `_default/list`      | section and taxonomy term pages                              |
+| `_default/vocabulary`| the list of terms of a vocabulary                            |
+| `_default/404`       | the "page not found" page                                    |
+| `post`               | a blog post (`blog/page` extends it)                         |
+| `projects`           | `layout: projects` — groups of cards                         |
+| `resume`             | `layout: resume` — timelines                                 |
+| `subscribe`          | `layout: subscribe` — pitch, benefits, form and testimonials |
 
 ### Homepage
 

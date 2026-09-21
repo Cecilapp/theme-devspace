@@ -10,14 +10,9 @@
     {%- block head_css ~%}
     {{ html(asset('styles.css')) }}
     {%- endblock head_css ~%}
-    {#- applies the stored color scheme before paint, to avoid a flash ~#}
-    <script>
-      if (localStorage.getItem('dark-mode') === 'true') {
-        document.querySelector('html').classList.add('dark');
-      } else {
-        document.querySelector('html').classList.remove('dark');
-      }
-    </script>
+    {%- block head_colorscheme ~%}
+    {{- include('partials/color-scheme.html.twig') ~}}
+    {%- endblock head_colorscheme ~%}
     {%- endblock head ~%}
   </head>
   <body class="font-inter antialiased bg-white text-slate-800 dark:bg-slate-900 dark:text-slate-200 tracking-tight">
@@ -68,8 +63,7 @@
         </main>
       </div>
     </div>
-    {%- block js ~%}
-    {{ html(asset('js/main.js'), {defer: true}) }}
-    {%- endblock js ~%}
+    {#- Extension point: the theme itself ships no script, the color scheme one being inlined in the `head`. -#}
+    {%- block js ~%}{% endblock js ~%}
   </body>
 </html>

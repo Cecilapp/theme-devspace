@@ -7,6 +7,9 @@
     {%- block head_metatags ~%}
     {{- include('partials/metatags.html.twig') ~}}
     {%- endblock head_metatags ~%}
+    {%- block head_preload ~%}
+    <link rel="preload" href="{{ url('fonts/Aspekta-650.woff2') }}" as="font" type="font/woff2" crossorigin>
+    {%- endblock head_preload ~%}
     {%- block head_css ~%}
     {{ html(asset('styles.css')) }}
     {%- endblock head_css ~%}

@@ -53,3 +53,42 @@
     src: url('fonts/PTMono-latin-ext.woff2') format('woff2');
     unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
 }
+
+/* Polices de repli aux métriques ajustées : elles évitent le décalage (CLS) au moment où
+   Aspekta et Inter remplacent la police système, `font-display: fallback` laissant le texte
+   s'afficher avant elles.
+   Valeurs calculées à partir des métriques réelles des fichiers woff2, avec Arial pour
+   référence (sur Android le repli est Roboto, très proche : l'ajustement y reste approché). */
+
+@font-face {
+    font-family: 'Aspekta fallback';
+    font-weight: 500;
+    font-style: normal;
+    src: local('Arial'), local('Helvetica Neue'), local('Roboto'), local('Liberation Sans');
+    size-adjust: 102.08%;
+    ascent-override: 107.76%;
+    descent-override: 32.33%;
+    line-gap-override: 0%;
+}
+
+@font-face {
+    font-family: 'Aspekta fallback';
+    font-weight: 650;
+    font-style: normal;
+    src: local('Arial'), local('Helvetica Neue'), local('Roboto'), local('Liberation Sans');
+    size-adjust: 105.35%;
+    ascent-override: 104.41%;
+    descent-override: 31.32%;
+    line-gap-override: 0%;
+}
+
+@font-face {
+    font-family: 'Inter fallback';
+    font-weight: 400 600;
+    font-style: normal;
+    src: local('Arial'), local('Helvetica Neue'), local('Roboto'), local('Liberation Sans');
+    size-adjust: 105.62%;
+    ascent-override: 91.72%;
+    descent-override: 22.84%;
+    line-gap-override: 0%;
+}

@@ -3,7 +3,7 @@
                       <article class="py-5 border-b border-slate-100 dark:border-slate-800">
                         <div class="flex items-start">
                           {%- if p.image|default(false) ~%}
-                          <img class="rounded-sm w-16 h-16 sm:w-[88px] sm:h-[88px] object-cover mr-6" src="{{ url(asset(p.image)|resize(176)) }}" width="88" height="88" alt="{{ p.title|e }}">
+                          {{- include('partials/image.html.twig', {src: p.image, attributes: {class: 'rounded-sm w-16 h-16 sm:w-[88px] sm:h-[88px] object-cover mr-6', width: 88, height: 88, alt: p.title, loading: 'lazy', decoding: 'async'}}) -}}
                           {%- endif ~%}
                           <div>
                             {%- if p.date|default(false) ~%}

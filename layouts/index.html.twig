@@ -16,7 +16,7 @@
               <div class="max-w-[700px]">
                 <div class="pt-8 pb-10">
                   {%- if site.devspace.avatar|default(false) ~%}
-                  <img class="rounded-full mb-5" src="{{ url(asset(site.devspace.avatar)|resize(112)) }}" width="56" height="56" alt="{{ site.title|e }}">
+                  {{- include('partials/image.html.twig', {src: site.devspace.avatar, attributes: {class: 'rounded-full mb-5', width: 56, height: 56, alt: site.title, loading: 'eager', fetchpriority: 'high', decoding: 'async'}}) -}}
                   {%- endif ~%}
                   <h1 class="h1 font-aspekta mb-5">{{ hero|raw }}</h1>
                   {%- if page.content ~%}

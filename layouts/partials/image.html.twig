@@ -1,0 +1,14 @@
+{#- An image of the templates, optimized in one place. Expects:
+      src:        asset path of the image
+      attributes: HTML attributes of the `img` tag (class, alt, width, height, loading, decoding, etc.)
+
+    When `width` is given the source is resized to twice that, for HiDPI screens, and alternative
+    formats are added (see the `layouts.images.formats` configuration option).
+    A vector image is served as is: it can neither be resized nor converted to another format. ~#}
+{%- set attributes = attributes|default({}) -%}
+{%- set width = attributes.width|default(false) -%}
+{%- if src|lower ends with '.svg' -%}
+<img src="{{ url(asset(src)) }}"{% for name, value in attributes %} {{ name }}="{{ value|e }}"{% endfor %}>
+{%- else -%}
+{{- html(width ? asset(src)|resize(width * 2) : asset(src), attributes) -}}
+{%- endif -%}

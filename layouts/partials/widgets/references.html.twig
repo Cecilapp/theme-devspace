@@ -10,7 +10,7 @@
                         <a class="flex justify-between items-center space-x-2 group" href="{{ url(item.url|default('#')) }}">
                           <div class="grow flex items-center space-x-3 truncate">
                             {%- if item.image|default(false) ~%}
-                            <img class="rounded-full" src="{{ url(asset(item.image)|resize(64)) }}" width="32" height="32" alt="{{ item.name|e }}">
+                            {{- include('partials/image.html.twig', {src: item.image, attributes: {class: 'rounded-full', width: 32, height: 32, alt: item.name, loading: 'lazy', decoding: 'async'}}) -}}
                             {%- endif ~%}
                             <div class="truncate">
                               <div class="font-aspekta font-[650] text-sm truncate mb-1">{{ item.name }}</div>

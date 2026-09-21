@@ -5,6 +5,10 @@ pages:
   pagination:
     max: 8
     path: page
+layouts:
+  images:
+    formats: [avif, webp]  # alternative formats generated for the images of the templates
+
 devspace:
   #avatar: images/me.jpg  # asset path of the avatar, displayed in the side navigation and on the homepage
   #copyright: 'Your name' # footer copyright holder (default: site title)

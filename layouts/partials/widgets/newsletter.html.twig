@@ -5,7 +5,7 @@
                     <div class="text-center mb-1">
                       <div class="inline-flex -space-x-3 -ml-0.5">
                         {%- for avatar in widget.avatars ~%}
-                        <img class="rounded-full border-2 border-white dark:border-slate-800 box-content" src="{{ url(asset(avatar)|resize(48)) }}" width="24" height="24" alt="" aria-hidden="true">
+                        {{- include('partials/image.html.twig', {src: avatar, attributes: {class: 'rounded-full border-2 border-white dark:border-slate-800 box-content', width: 24, height: 24, alt: '', 'aria-hidden': 'true', loading: 'lazy', decoding: 'async'}}) -}}
                         {%- endfor ~%}
                       </div>
                     </div>

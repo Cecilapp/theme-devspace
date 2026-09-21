@@ -5,7 +5,7 @@
                     <div class="font-aspekta font-[650] text-center mb-3">{{ widget.title|default('Free E-Book') }}</div>
                     <div class="text-center">
                       {%- if widget.url|default(false) %}<a href="{{ url(widget.url) }}">{% endif -%}
-                      <img class="inline-flex rounded-lg shadow-lg rotate-3" src="{{ url(asset(widget.image)|resize(296)) }}" width="148" alt="{{ widget.title|default('Free E-Book')|e }}">
+                      {{- include('partials/image.html.twig', {src: widget.image, attributes: {class: 'inline-flex rounded-lg shadow-lg rotate-3', width: 148, alt: widget.title|default('Free E-Book'), loading: 'lazy', decoding: 'async'}}) -}}
                       {%- if widget.url|default(false) %}</a>{% endif -%}
                     </div>
                   </div>

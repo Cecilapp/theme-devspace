@@ -21,7 +21,11 @@
                             <div class="flex items-start{% if (section.timeline ?? true) %} before:absolute before:left-0 before:h-full before:w-px before:bg-slate-200 dark:before:bg-slate-800 before:self-start before:ml-[28px] before:-translate-x-1/2 before:translate-y-8 group-last-of-type:before:hidden{% endif %}">
                               <div class="absolute left-0 h-14 w-14 flex items-center justify-center{% if not item.rounded|default(false) %} border border-slate-200 dark:border-slate-800 dark:bg-linear-to-t dark:from-slate-800 dark:to-slate-800/30{% endif %} bg-white dark:bg-slate-900 rounded-full">
                                 {%- if item.image|default(false) ~%}
-                                <img class="{% if item.rounded|default(false) %}rounded-full{% endif %}" src="{{ url(asset(item.image)) }}" {% if item.rounded|default(false) %}width="56" height="56"{% else %}width="24"{% endif %} alt="{{ item.subtitle|default(item.title)|e }}">
+                                {%- set rounded = item.rounded|default(false) -%}
+                                {%- set alt = item.subtitle|default(item.title) -%}
+                                {{- include('partials/image.html.twig', {src: item.image, attributes: rounded
+                                     ? {class: 'rounded-full', width: 56, height: 56, alt: alt, loading: 'lazy', decoding: 'async'}
+                                     : {width: 24, alt: alt, loading: 'lazy', decoding: 'async'}}) -}}
                                 {%- else ~%}
                                 <span class="w-2 h-2 rounded-full bg-sky-500" aria-hidden="true"></span>
                                 {%- endif ~%}

@@ -7,7 +7,7 @@
               {%- if avatar and page.type != 'homepage' ~%}
               <div class="flex justify-center my-4">
                 <a href="{{ url(site.home) }}">
-                  <img class="rounded-full" src="{{ url(asset(avatar)|resize(64)) }}" width="32" height="32" alt="{{ site.title|e }}">
+                  {{- include('partials/image.html.twig', {src: avatar, attributes: {class: 'rounded-full', width: 32, height: 32, alt: site.title, decoding: 'async'}}) -}}
                 </a>
               </div>
               {%- endif ~%}

@@ -11,7 +11,9 @@
     <link rel="preload" href="{{ url('fonts/Aspekta-650.woff2') }}" as="font" type="font/woff2" crossorigin>
     {%- endblock head_preload ~%}
     {%- block head_css ~%}
-    {{ html(asset('styles.css')) }}
+    <style>
+      {{ asset('styles.css')|inline }}
+    </style>
     {%- endblock head_css ~%}
     {%- block head_colorscheme ~%}
     {{- include('partials/color-scheme.html.twig') ~}}

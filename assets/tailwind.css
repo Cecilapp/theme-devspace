@@ -4,7 +4,6 @@
 
 /* Scan the theme templates (and the ones of the site using it) for utility classes */
 @source '../layouts/**/*.twig';
-@source '../../../layouts/**/*.twig';
 
 /* Additional styles */
 @import './additional-styles/utility-patterns.css' layer(components);
@@ -73,6 +72,9 @@
   ::backdrop,
   ::file-selector-button {
     border-color: var(--color-gray-200, currentColor);
+  }
+  img {
+    max-width: unset;
   }
 }
 

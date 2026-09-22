@@ -1,82 +1,81 @@
 {#- Color scheme handling, in one place:
-    1. resolves the stored preference (or the system one) and applies it before paint, to avoid a flash;
-    2. exposes `window.colorScheme` (`current()`, `set()`, `toggle()`) and dispatches a `colorschemechange`
-       event on `document`, so a site or a third party embed can follow the scheme of the page;
-    3. binds the switches of the header (`.light-switch`), once their markup exists. ~#}
-<script>{% apply minify_js ~%}
-  (function () {
-    var root = document.documentElement;
-    var media = window.matchMedia('(prefers-color-scheme: dark)');
-    function systemScheme() {
-      return media.matches ? 'dark' : 'light';
-    }
-    function storedScheme() {
-      try {
-        return localStorage.getItem('theme');
-      } catch (e) {
-        return null; // storage unavailable (private mode, blocked cookies, etc.)
-      }
-    }
-    function currentScheme() {
-      return storedScheme() || systemScheme();
-    }
-    function apply() {
-      var scheme = currentScheme();
-      root.classList.toggle('dark', scheme === 'dark');
-      root.dataset.theme = scheme;
-      root.style.colorScheme = scheme;
-      document.dispatchEvent(new CustomEvent('colorschemechange', {detail: {scheme: scheme}}));
-    }
-    function set(scheme) {
-      try {
-        // only an explicit preference is stored, so the system one keeps the lead when both agree
-        if (scheme === systemScheme()) {
-          localStorage.removeItem('theme');
-        } else {
-          localStorage.setItem('theme', scheme);
+1. resolves the stored preference (or the system one) and applies it before paint, to avoid a flash;
+2. exposes `window.colorScheme` (`current()`, `set()`, `toggle()`) and dispatches a `colorschemechange` event on `document`, so a site or a third party embed can follow the scheme of the page;
+3. binds the switches of the header (`.light-switch`), once their markup exists. ~#}
+    <script>{% apply minify_js ~%}
+      (function () {
+        var root = document.documentElement;
+        var media = window.matchMedia('(prefers-color-scheme: dark)');
+        function systemScheme() {
+          return media.matches ? 'dark' : 'light';
         }
-      } catch (e) {
-        // storage unavailable: the choice applies to this page only
-      }
-      apply();
-    }
-    // a stored preference that converges with the new system one is dropped
-    media.addEventListener('change', function () {
-      set(currentScheme());
-    });
-    window.colorScheme = {
-      current: currentScheme,
-      set: set,
-      toggle: function () {
-        set(currentScheme() === 'dark' ? 'light' : 'dark');
-      },
-    };
-    apply();
-    function bindSwitches() {
-      var switches = document.querySelectorAll('.light-switch');
-      if (switches.length === 0) {
-        return;
-      }
-      function sync() {
-        var isDark = currentScheme() === 'dark';
-        switches.forEach(function (input) {
-          input.checked = isDark;
+        function storedScheme() {
+          try {
+            return localStorage.getItem('theme');
+          } catch (e) {
+            return null; // storage unavailable (private mode, blocked cookies, etc.)
+          }
+        }
+        function currentScheme() {
+          return storedScheme() || systemScheme();
+        }
+        function apply() {
+          var scheme = currentScheme();
+          root.classList.toggle('dark', scheme === 'dark');
+          root.dataset.theme = scheme;
+          root.style.colorScheme = scheme;
+          document.dispatchEvent(new CustomEvent('colorschemechange', {detail: {scheme: scheme}}));
+        }
+        function set(scheme) {
+          try {
+            // only an explicit preference is stored, so the system one keeps the lead when both agree
+            if (scheme === systemScheme()) {
+              localStorage.removeItem('theme');
+            } else {
+              localStorage.setItem('theme', scheme);
+            }
+          } catch (e) {
+            // storage unavailable: the choice applies to this page only
+          }
+          apply();
+        }
+        // a stored preference that converges with the new system one is dropped
+        media.addEventListener('change', function () {
+          set(currentScheme());
         });
-      }
-      switches.forEach(function (input) {
-        input.addEventListener('change', function () {
-          set(input.checked ? 'dark' : 'light');
-        });
-      });
-      // keeps every switch in sync, including on a system preference change
-      document.addEventListener('colorschemechange', sync);
-      sync();
-    }
-    // this partial belongs to the `head`, so the switches are not in the DOM yet
-    if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', bindSwitches);
-    } else {
-      bindSwitches();
-    }
-  })();
-{% endapply %}</script>
+        window.colorScheme = {
+          current: currentScheme,
+          set: set,
+          toggle: function () {
+            set(currentScheme() === 'dark' ? 'light' : 'dark');
+          },
+        };
+        apply();
+        function bindSwitches() {
+          var switches = document.querySelectorAll('.light-switch');
+          if (switches.length === 0) {
+            return;
+          }
+          function sync() {
+            var isDark = currentScheme() === 'dark';
+            switches.forEach(function (input) {
+              input.checked = isDark;
+            });
+          }
+          switches.forEach(function (input) {
+            input.addEventListener('change', function () {
+              set(input.checked ? 'dark' : 'light');
+            });
+          });
+          // keeps every switch in sync, including on a system preference change
+          document.addEventListener('colorschemechange', sync);
+          sync();
+        }
+        // this partial belongs to the `head`, so the switches are not in the DOM yet
+        if (document.readyState === 'loading') {
+          document.addEventListener('DOMContentLoaded', bindSwitches);
+        } else {
+          bindSwitches();
+        }
+      })();
+    {% endapply %}</script>

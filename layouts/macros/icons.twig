@@ -55,7 +55,7 @@
 {% endmacro %}
 
 {#- Interface icons -#}
-{% macro ui(name, class) %}
+{% macro ui(name, class = '') %}
 {%- if name == 'arrow-right' -%}
 <svg class="{{ class|default('fill-current') }}" xmlns="http://www.w3.org/2000/svg" width="14" height="12" aria-hidden="true"><path d="M9.586 5 6.293 1.707 7.707.293 13.414 6l-5.707 5.707-1.414-1.414L9.586 7H0V5h9.586Z"/></svg>
 {%- elseif name == 'arrow-left' -%}

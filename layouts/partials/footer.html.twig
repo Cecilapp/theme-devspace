@@ -8,7 +8,7 @@
                   <ul class="inline-flex mb-4 md:order-1 md:ml-4 md:mb-0 space-x-2">
                     {%- for name, href in social ~%}
                     <li>
-                      <a class="flex justify-center items-center text-sky-500 hover:text-sky-600 transition duration-150 ease-in-out" href="{{ url(href) }}"{% if href starts with 'http' %} target="_blank" rel="noreferrer"{% endif %} aria-label="{{ name|capitalize }}">
+                      <a class="flex justify-center items-center text-sky-500 hover:text-sky-600 transition duration-150 ease-in-out" href="{{ href starts with 'mailto:' ? href : url(href) }}"{% if href starts with 'http' %} target="_blank" rel="noreferrer"{% endif %} aria-label="{{ name|capitalize }}">
                         {{- icons.social(name) -}}
                       </a>
                     </li>
